@@ -45,27 +45,32 @@ var vis = d3.select("#bargraph"),
             .orient("left");
 
 //first time generating the graph components when command == "new"
-if (command == "new") {    
+if (command == "new") {   
+    
+    //draw the Y axis
     vis.append("svg:g")
     .attr("class", "axis")
     .attr("transform", "translate(" + (MARGINS.left) + ",0)")
     .call(yAxis);
     
-    //draw the bars
+    //draw the bars by creating svg rectangles of size and coordinates based on the dataset
     bargraphData.forEach(function(d, i) {
-        vis.append('rect')
+        vis.append("rect")
         .attr("id", d.name)
-        .style('fill', colors(d.name))
+        .style("fill", colors(d.name))
         .attr("y", yScale(d.name) - 10)
         .attr("x", 80)
         .attr("height", 20)
+        //this sets the size of the svg "rect"
         .attr("width", (xScale(d.currentrating) - 15)/2);
     });
 
-    //text labels
+    //creates the rating labels, which are svg text objects given coordinates in the canvas
     bargraphData.forEach(function(d, i) {
-        vis.append('text')
+        vis.append("text")
+        //the text svg objects need an ID, because when they are
         .attr("id", "ratingtext" + d.name)
+        //this sets the x-coordinate of the label (relative to the canvas)
         .attr("transform", "translate(" + ((xScale(d.currentrating) + 10)/2) + "," + yScale(d.name) + ")")
         .attr("x", 3)
         .attr("dy", ".35em")
@@ -77,19 +82,21 @@ if (command == "new") {
 //add transition animation with .transition()
 } else if (command == "update") {
     
-    d3.select('.axis')
+    d3.select(".axis")
     .transition()
     .call(yAxis);
     
+    //Find the svg objects we created when the graph was created, and alter their attributes to the new values from
+    //Do this each time one of the buttons is pressed.
     bargraphData.forEach(function(d,i) {
-        d3.select('#bargraph')
+        d3.select("#bargraph")
         .select("#" + d.name)
         .attr("width", xScale(d.currentrating) - 15)
         .attr("y", yScale(d.name) - 10)
         .attr("x", 80)        
         .transition();
     
-        d3.select('#bargraph')
+        d3.select("#bargraph")
         .select("#ratingtext" + d.name)
         .transition()
         .text(d.currentrating)
