@@ -1,4 +1,4 @@
-//this file is for making the bar graph 
+//this file is for making the bar graph. It uses the d3.js library from d3js.org
 function drawBarGraph(command) {
 
 var data = JSON.parse(localStorage.getItem("itemList"));
