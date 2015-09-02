@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    line-height: 1.6;
+    background: #444545;
+
+}
+
+#content {
+    border-radius: 25px;
+    width: 1200px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 50px;
+}
+
+#options {
+    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    width: 1000px;
+}
+
+
+#graphDiv {
+    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    width: 1000px;
+    height: 500px;
+}
+
+#controls {
+    margin: 0 auto;
+    border-radius: 25px;
+    top: 5px;
+    margin: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    
+}
+
+p {
+    margin: 1rem 0;
+    font-family: "Helvetica", sans-serif;
+    font-size: 20px;
+}
+
+button {
+    position: inside;
+    height: 3.8rem;
+    margin: 0 0 1rem;
+    padding: 0 1.5rem;
+    background: #fafafa;
+    border: 0.1rem solid #a6a6a6;
+    border-radius: 0.2rem;
+    font-size: 1.6rem;
+    line-height: 3.8rem;
+    color: #333;
+    text-align: center;
+    text-shadow: 0.1rem 0.1rem 0 rgba(255,255,255,0.3);
+    text-decoration: none;
+    outline: none;
+}
+
+.bar {
+    display: inline-block;
+    width: 20px;
+    height: 75px;
+    background-color: teal;
+    margin-right: 2px;
+}
+
+.axis path {
+    fill: none;
+    stroke: #777;
+    shape-rendering: crispEdges;
+}
+.axis text {
+    font-family: Lato;
+    font-size: 13px;
+}

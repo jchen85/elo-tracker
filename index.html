@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Elo rating tool</title>
+    <link rel="stylesheet" href="css/app.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+  </head>
+  <body>
+    <div id="content">
+        <p>This tool helps you make decisions using the Elo rating system
+        <a href=https://en.wikipedia.org/wiki/Elo_rating_system>originally created by Arpad Elo</a>. 
+        The Elo rating system is a method for calculating the relative skill levels of players in competitor-versus-competitor
+        games such as chess. The Elo rating system, or a variation of it, is used in popular online games 
+        such as League of Legends, Starcraft 2, and Hearthstone. Here, the Elo rating system is implemented in
+        its typical form, as described 
+        <a href=https://en.wikipedia.org/wiki/Elo_rating_system#Mathematical_details>here</a>.</p>
+        <p>Here, instead of players, we have choices. Choices start with a rating of 1500. Choices are matched up against
+        one another, and gain or lose points depending on which one you choose. The greater the difference between the two,
+        the greater the gain or loss of points.</p>
+        <p>You are presented with two options at a time and asked to pick one. Eventually, the "best" option floats to the top.</p>
+        <p>You can either create your own list of choices to choose between by entering them into the text box, or you 
+        can try this tool using preset categories for food by clicking the corresponding button.</p>
+        <br>
+      <div id="options">
+          <button id="start-button" onclick="presetCats()">Try it with preset food categories!</button><br>
+          OR <br> Enter between 5 and 10 items using the text box below: <br>
+          <input type="text" placeholder="Enter an item and press Enter..." id="newItem" size=50 onkeypress="addItem(event)"></input>
+           
+          <div id="demo"></div><br>
+      
+          <button id="start-button" onclick="beginRanking()">Click when finished!</button><br>
+          
+      </div>
+      <div id="controls">
+          <script type="text/javascript">document.getElementById("controls").style.display = "none";</script>
+          Select the one you prefer:<br>
+          <button id="leftChoice" onclick="leftChoice()">Select</button>
+          <button id="rightChoice" onclick="rightChoice()">Select</button><br>
+          <div id="graphDiv">
+            <svg id="bargraph" width="1000" height="500"></svg>
+            <script type="text/javascript" src="js/bargraph.js"></script>
+          </div>
+          <button id="end-button" onclick="endRanking()">Start Over</button>
+      </div>
+    </div>
+  </body>
+</html>
