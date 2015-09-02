@@ -1,6 +1,5 @@
 function drawBarGraph(command) {
 //this file is for making the bar graph 
-//uses some of the same global variables from linegraph.js
 
 var data = JSON.parse(localStorage.getItem("itemList"));
 var bargraphData = data.map(function(d) {

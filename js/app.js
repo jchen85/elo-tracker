@@ -10,7 +10,7 @@ function addItem(event) {
         defaultRatingArr.push(defaultRating);
     }
     
-    var newItem = {"name": document.getElementById("newItem").value.replace(/[^\w\s]/gi, ''), 
+    var newItem = {"name": document.getElementById("newItem").value.replace(/[^a-z0-9]+/gi, ""),
                    "rating": defaultRatingArr,
                    "dataPoint": Array.apply(null, Array(numDataPoints)).map(function (_, i) {return i;})
                   };
