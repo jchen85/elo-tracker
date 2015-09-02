@@ -1,5 +1,5 @@
-function drawBarGraph(command) {
 //this file is for making the bar graph 
+function drawBarGraph(command) {
 
 var data = JSON.parse(localStorage.getItem("itemList"));
 var bargraphData = data.map(function(d) {
@@ -10,9 +10,11 @@ bargraphData.sort(function(a,b) {
     return a.currentrating - b.currentrating;
 });
 
+//set colors
 var colors = d3.scale.category10();
 colors.domain(data.map(function (d) { return d.name; }));
 
+//create canvas
 var vis = d3.select("#bargraph"),
     WIDTH = 1000,
     HEIGHT = 500,
@@ -22,6 +24,8 @@ var vis = d3.select("#bargraph"),
         bottom: 20,
         left: 70
     }, 
+    
+    //define scales
     xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right])
                 .domain([
                     d3.min(bargraphData.map(function(d) {
@@ -33,18 +37,21 @@ var vis = d3.select("#bargraph"),
                         ]),
     yScale = d3.scale.ordinal().rangePoints([HEIGHT - MARGINS.top, MARGINS.bottom])
                 .domain(bargraphData.map(function(d) { return d.name; })),
+                
+    //define axes
     xAxis = d3.svg.axis().scale(xScale),
     yAxis = d3.svg.axis()
             .scale(yScale)
             .orient("left");
 
-
+//first time generating the graph components when command == "new"
 if (command == "new") {    
     vis.append("svg:g")
     .attr("class", "axis")
     .attr("transform", "translate(" + (MARGINS.left) + ",0)")
     .call(yAxis);
     
+    //draw the bars
     bargraphData.forEach(function(d, i) {
         vis.append('rect')
         .attr("id", d.name)
@@ -55,6 +62,7 @@ if (command == "new") {
         .attr("width", (xScale(d.currentrating) - 15)/2);
     });
 
+    //text labels
     bargraphData.forEach(function(d, i) {
         vis.append('text')
         .attr("id", "ratingtext" + d.name)
@@ -64,6 +72,9 @@ if (command == "new") {
         .attr("fill", "white")
         .text(d.currentrating);
     })
+    
+//redraw the graph after every click of Choice 1 or Choice 2 buttons
+//add transition animation with .transition()
 } else if (command == "update") {
     
     d3.select('.axis')
@@ -86,8 +97,6 @@ if (command == "new") {
         ;
     });    
 }
-
-
 
 
 }
